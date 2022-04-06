@@ -188,8 +188,9 @@ class TestCasesPractice {
         val userProvider: (String, String) -> Result<UserData, Error> = { userName, passWord ->
             if (userName == "abcd" && passWord == "password") {
                 Success(anotherUserDataProviderForTest())
+            } else {
+                Failure(MockError(message = "Should Not Happen"))
             }
-            Failure(MockError(message = "Should Not Happen"))
         }
 
         val didWeReceivedUser = command.execute(
